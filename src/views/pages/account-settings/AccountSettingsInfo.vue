@@ -60,7 +60,7 @@
               outlined
               dense
               label="Country"
-              :items="['USA','UK','AUSTRALIA','BRAZIL']"
+              :items="['USA', 'UK', 'AUSTRALIA', 'BRAZIL']"
             ></v-select>
           </v-col>
 
@@ -76,7 +76,7 @@
               chips
               small-chips
               label="Languages"
-              :items="['English','Spanish','French','German']"
+              :items="['English', 'Spanish', 'French', 'German']"
             ></v-select>
           </v-col>
 

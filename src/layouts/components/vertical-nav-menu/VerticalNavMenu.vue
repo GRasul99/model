@@ -4,7 +4,7 @@
     app
     floating
     width="260"
-    class="app-navigation-menu"
+    class="app-navigation-menu elevation-1"
     :right="$vuetify.rtl"
     @input="val => $emit('update:is-drawer-open', val)"
   >
@@ -37,81 +37,25 @@
       shaped
       class="vertical-nav-menu-items pr-5"
     >
-      <nav-menu-link
-        title="Dashboard"
-        :to="{ name: 'dashboard' }"
-        :icon="icons.mdiHomeOutline"
-      ></nav-menu-link>
-      <nav-menu-link
-        title="Account Settings"
-        :to="{ name: 'pages-account-settings'}"
-        :icon="icons.mdiAccountCogOutline"
-      ></nav-menu-link>
       <nav-menu-group
-        title="Pages"
-        :icon="icons.mdiFileOutline"
+        title="Dashboard"
+        :icon="icons.mdiHomeOutline"
       >
         <nav-menu-link
-          title="Login"
-          :to="{ name: 'pages-login' }"
-          target="_blank"
-        ></nav-menu-link>
+          title="Statistics"
+          :to="{ name: 'dashboard-statistics' }"
+        />
         <nav-menu-link
-          title="Register"
-          :to="{ name: 'pages-register' }"
-          target="_blank"
-        ></nav-menu-link>
-        <nav-menu-link
-          title="Error"
-          :to="{ name: 'error-404' }"
-          target="_blank"
-        ></nav-menu-link>
+          title="Analytics"
+          :to="{ name: 'dashboard-analytics' }"
+        />
       </nav-menu-group>
       <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title>
-      <nav-menu-link
-        title="Typography"
-        :to="{ name: 'typography' }"
-        :icon="icons.mdiAlphaTBoxOutline"
-      ></nav-menu-link>
-      <nav-menu-link
-        title="Icons"
-        :to="{ name: 'icons' }"
-        :icon="icons.mdiEyeOutline"
-      ></nav-menu-link>
-      <nav-menu-link
-        title="Cards"
-        :to="{ name: 'cards' }"
-        :icon="icons.mdiCreditCardOutline"
-      ></nav-menu-link>
-      <nav-menu-link
-        title="Tables"
-        :to="{ name: 'simple-table' }"
-        :icon="icons.mdiTable"
-      ></nav-menu-link>
-      <nav-menu-link
-        title="Form Layouts"
-        :to="{ name: 'form-layouts' }"
-        :icon="icons.mdiFormSelect"
-      ></nav-menu-link>
     </v-list>
-    <a
-      href="https://themeselection.com/products/materio-vuetify-vuejs-admin-template"
-      target="_blank"
-      rel="nofollow"
-    >
-      <v-img
-        :src="require(`@/assets/images/pro/upgrade-banner-${$vuetify.theme.dark ? 'dark' : 'light'}.png`)"
-        alt="upgrade-banner"
-        transition="scale-transition"
-        class="upgrade-banner mx-auto"
-        max-width="230"
-      ></v-img>
-    </a>
   </v-navigation-drawer>
 </template>
 
 <script>
-// eslint-disable-next-line object-curly-newline
 import {
   mdiHomeOutline,
   mdiAlphaTBoxOutline,
@@ -122,15 +66,15 @@ import {
   mdiFormSelect,
   mdiAccountCogOutline,
 } from '@mdi/js'
-import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
 import NavMenuGroup from './components/NavMenuGroup.vue'
 import NavMenuLink from './components/NavMenuLink.vue'
+import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
 
 export default {
   components: {
-    NavMenuSectionTitle,
     NavMenuGroup,
     NavMenuLink,
+    NavMenuSectionTitle,
   },
   props: {
     isDrawerOpen: {
@@ -173,9 +117,9 @@ export default {
   }
 }
 
-@include theme(app-navigation-menu) using ($material) {
-  background-color: map-deep-get($material, 'background');
-}
+//@include theme(app-navigation-menu) using ($material) {
+//  background-color: map-deep-get($material, 'background');
+//}
 
 .app-navigation-menu {
   .v-list-item {
@@ -186,17 +130,6 @@ export default {
         }
       }
     }
-  }
-}
-
-// You can remove below style
-// Upgrade Banner
-.app-navigation-menu {
-  .upgrade-banner {
-    position: absolute;
-    bottom: 13px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 </style>

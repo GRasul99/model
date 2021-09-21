@@ -16,7 +16,8 @@
             Influencing The Influencer
           </v-card-title>
           <v-card-text>
-            Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+            Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister
+            predicts Cancun will draw as many visitors in 2006 as it did two years ago.
           </v-card-text>
         </v-card>
       </v-col>
@@ -105,7 +106,10 @@
             <div v-show="isCardDetailsVisible">
               <v-divider></v-divider>
               <v-card-text>
-                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for
+                sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey,
+                you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way
+                to escape.
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -176,7 +180,8 @@
                 <span class="text-sm">5 Star | 98 reviews</span>
               </v-card-text>
               <v-card-text>
-                Before there was a United States of America, there were coffee houses, because how are you supposed to build.
+                Before there was a United States of America, there were coffee houses, because how are you supposed to
+                build.
               </v-card-text>
               <v-card-actions class="dense">
                 <v-btn
@@ -198,9 +203,9 @@
             <div class="pa-4">
               <v-img
                 src="@/assets/images/pages/card-basic-clock.jpg"
-                :class="$vuetify.breakpoint.mdAndUp ? 'rounded-lg':'rounded-0'"
+                :class="$vuetify.breakpoint.mdAndUp ? 'rounded-lg' : 'rounded-0'"
                 height="100%"
-                :max-width="$vuetify.breakpoint.mdAndUp ? '220':'100%'"
+                :max-width="$vuetify.breakpoint.mdAndUp ? '220' : '100%'"
               ></v-img>
             </div>
           </div>
@@ -252,7 +257,10 @@
             >
               <v-card-title>Lifetime Membership</v-card-title>
               <v-card-text>
-                Here, I focus on a range of items and features that we use in life without giving them a second thought such as Coca Cola, body muscles and holding ones own breath. Though, most of these notes are not fundamentally necessary, they are such that you can use them for a good laugh, at a drinks party or for picking up women or men.
+                Here, I focus on a range of items and features that we use in life without giving them a second thought
+                such as Coca Cola, body muscles and holding ones own breath. Though, most of these notes are not
+                fundamentally necessary, they are such that you can use them for a good laugh, at a drinks party or for
+                picking up women or men.
               </v-card-text>
               <v-card-text>
                 <v-divider></v-divider>
@@ -334,10 +342,13 @@
         <v-card>
           <v-card-title>Influencing The Influencer</v-card-title>
           <v-card-text>
-            Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery people scan bar codes with handhelds and workers in the field stay in touch.
+            Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in
+            front of their desktops, while delivery people scan bar codes with handhelds and workers in the field stay
+            in touch.
           </v-card-text>
           <v-card-text>
-            If you’re in the market for new desktops, notebooks, or PDAs, there are a myriad of choices. Here’s a rundown of some of the best systems available.
+            If you’re in the market for new desktops, notebooks, or PDAs, there are a myriad of choices. Here’s a
+            rundown of some of the best systems available.
           </v-card-text>
           <v-card-text>
             The following non-standard attributes are available on some browsers.
@@ -371,7 +382,9 @@
             <span class="ms-3 text-sm">5 Star | 98 reviews</span>
           </v-card-text>
           <v-card-text>
-            If you are looking for a new way to promote your business that won’t cost you more money, maybe printing is one of the options you won’t resist. Printing is a widely use process in making printed materials that are used for advertising.
+            If you are looking for a new way to promote your business that won’t cost you more money, maybe printing is
+            one of the options you won’t resist. Printing is a widely use process in making printed materials that are
+            used for advertising.
           </v-card-text>
           <v-card-text>
             become fast, easy and simple. If you want your promotional material to be an eye-catching
@@ -421,7 +434,8 @@
             </h6>
           </v-card-text>
           <v-card-text>
-            According to us blisters are a very common thing and we come across them very often in our daily lives. It is a very common occurrence like cold or fever depending upon your lifestyle.
+            According to us blisters are a very common thing and we come across them very often in our daily lives. It
+            is a very common occurrence like cold or fever depending upon your lifestyle.
           </v-card-text>
           <v-card-text>
             <v-btn

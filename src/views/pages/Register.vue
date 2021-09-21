@@ -91,7 +91,7 @@
           <span class="me-2">
             Already have an account?
           </span>
-          <router-link :to="{ name:'pages-login' }">
+          <router-link :to="{ name: 'pages-login' }">
             Sign in instead
           </router-link>
         </v-card-text>
@@ -111,7 +111,7 @@
             icon
             class="ms-1"
           >
-            <v-icon :color="$vuetify.theme.dark ? link.colorInDark:link.color">
+            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color">
               {{ link.icon }}
             </v-icon>
           </v-btn>
@@ -123,8 +123,8 @@
     <img
       class="auth-mask-bg"
       height="190"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
+      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark' : 'light'}.png`)"
+    />
 
     <!-- tree -->
     <v-img

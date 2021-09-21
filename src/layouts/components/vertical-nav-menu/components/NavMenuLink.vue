@@ -6,7 +6,7 @@
   >
     <v-list-item-icon>
       <v-icon
-        :class="{'alternate-icon-small': !icon}"
+        :class="{ 'alternate-icon-small': !icon }"
         class="mx-auto"
       >
         {{ icon || alternateIcon }}

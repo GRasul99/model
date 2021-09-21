@@ -39,9 +39,9 @@
 
     <v-card-text>
       <div
-        v-for="(earning,index) in totalEarning"
+        v-for="(earning, index) in totalEarning"
         :key="earning.avatar"
-        :class="`d-flex align-start ${index >0 ? 'mt-8':''}`"
+        :class="`d-flex align-start ${index > 0 ? 'mt-8' : ''}`"
       >
         <v-avatar
           rounded

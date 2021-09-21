@@ -61,6 +61,7 @@
 import { mdiAccountOutline, mdiCurrencyUsd, mdiTrendingUp, mdiDotsVertical, mdiLabelOutline } from '@mdi/js'
 
 export default {
+  name: 'BooksStatistics',
   setup() {
     const statisticsData = [
       {

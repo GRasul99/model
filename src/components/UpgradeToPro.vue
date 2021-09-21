@@ -39,7 +39,8 @@
         Materio - Vuetify Admin Template
       </v-card-title>
       <v-card-text>
-        Materio Admin is the most developer friendly &amp; highly customisable Admin Dashboard Template based on Vuetify.
+        Materio Admin is the most developer friendly &amp; highly customisable Admin Dashboard Template based on
+        Vuetify.
       </v-card-text>
       <v-card-text>
         <span>Click on below button to explore PRO version.</span>

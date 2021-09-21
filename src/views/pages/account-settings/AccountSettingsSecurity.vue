@@ -16,7 +16,7 @@
               <v-text-field
                 v-model="currentPassword"
                 :type="isCurrentPasswordVisible ? 'text' : 'password'"
-                :append-icon="isCurrentPasswordVisible ? icons.mdiEyeOffOutline:icons.mdiEyeOutline"
+                :append-icon="isCurrentPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
                 label="Current Password"
                 outlined
                 dense
@@ -27,7 +27,7 @@
               <v-text-field
                 v-model="newPassword"
                 :type="isNewPasswordVisible ? 'text' : 'password'"
-                :append-icon="isNewPasswordVisible ? icons.mdiEyeOffOutline:icons.mdiEyeOutline"
+                :append-icon="isNewPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
                 label="New Password"
                 outlined
                 dense
@@ -40,7 +40,7 @@
               <v-text-field
                 v-model="cPassword"
                 :type="isCPasswordVisible ? 'text' : 'password'"
-                :append-icon="isCPasswordVisible ? icons.mdiEyeOffOutline:icons.mdiEyeOutline"
+                :append-icon="isCPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
                 label="Confirm New Password"
                 outlined
                 dense
@@ -94,8 +94,7 @@
             Two factor authentication is not enabled yet.
           </p>
           <p class="text-sm text--primary">
-            Two-factor authentication adds an additional layer of
-            security to your account by requiring more than just a
+            Two-factor authentication adds an additional layer of security to your account by requiring more than just a
             password to log in. Learn more.
           </p>
         </v-card-text>

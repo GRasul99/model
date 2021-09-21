@@ -4,9 +4,8 @@
 
     <v-app-bar
       app
-      flat
       absolute
-      color="transparent"
+      class="mx-6 rounded-lg"
     >
       <div class="boxed-container w-full">
         <div class="d-flex align-center mx-6">
@@ -52,7 +51,7 @@
     </v-app-bar>
 
     <v-main>
-      <div class="app-content-container boxed-container pa-6">
+      <div class="app-content-container boxed-container w-full pa-6">
         <slot></slot>
       </div>
     </v-main>
@@ -68,7 +67,8 @@
       <div class="boxed-container w-full">
         <div class="mx-6 d-flex justify-space-between">
           <span>
-            &copy; 2021 <a
+            &copy; 2021
+            <a
               href="https://themeselection.com"
               class="text-decoration-none"
               target="_blank"
