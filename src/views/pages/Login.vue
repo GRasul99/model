@@ -14,7 +14,7 @@
               max-width="30px"
               alt="logo"
               contain
-              class="me-3 "
+              class="me-3"
             ></v-img>
 
             <h2 class="text-2xl font-weight-semibold">

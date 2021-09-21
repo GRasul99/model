@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 
 import '@/libs/axios'
+import '@/auth/jwt/useJwt'
 
 Vue.config.productionTip = false
 
