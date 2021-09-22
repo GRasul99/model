@@ -88,9 +88,14 @@
           sm="6"
           md="3"
         >
-          <v-autocomplete
+          <v-select
+            v-model="eBook"
+            label="E book"
             outlined
             dense
+            :items="specialBooksOptions"
+            item-text="text"
+            item-value="value"
           />
         </v-col>
         <v-col
@@ -98,9 +103,14 @@
           sm="6"
           md="3"
         >
-          <v-autocomplete
+          <v-select
+            v-model="specialBook"
+            label="Special book"
             outlined
             dense
+            :items="specialBooksOptions"
+            item-text="text"
+            item-value="value"
           />
         </v-col>
       </v-row>
@@ -108,12 +118,13 @@
     <v-card>
       <v-row>
         <v-col
-          cols="12"
+          cols="10"
           offset-md="8"
           md="4"
         >
           <v-text-field
             v-model="search"
+            class="mr-6"
             :append-icon="icons.mdiMagnify"
             label="Search"
             single-line
@@ -134,20 +145,51 @@
           hide-default-footer
           @page-count="pageCount"
         >
-          <template #[`item.actions`]="{ item }">
-            <v-icon
-              small
-              class="me-2"
-              @click="editItem(item)"
+          <template v-slot:item.authors="{ item }">
+            <p
+              v-for="author in item.authors"
+              :key="author.id"
             >
-              {{ icons.mdiPencilOutline }}
-            </v-icon>
-            <v-icon
-              small
-              @click="deleteItem(item)"
-            >
-              {{ icons.mdiDeleteOutline }}
-            </v-icon>
+              {{ author.initial_name }}
+            </p>
+          </template>
+          <template v-slot:item.special_books="{ item }">
+            <p v-if="item.special_books">
+              Да
+            </p>
+            <p v-else>
+              Нет
+            </p>
+          </template>
+          <template v-slot:item.actions="{ item }">
+            <v-menu offset-y>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>
+                    {{ icons.mdiDotsVertical }}
+                  </v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title>
+                    <v-btn :to="{ name: 'apps-books-edit', params: { id: item.id } }">
+                      <v-icon
+                        small
+                        class="mr-2 pl-0"
+                      >
+                        {{ icons.mdiPencilOutline }}
+                      </v-icon>
+                      Edit
+                    </v-btn>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </template>
         </v-data-table>
         <v-card-text class="pt-2">
@@ -163,6 +205,7 @@
                 dense
                 outlined
                 hide-details
+                @change="change"
               ></v-select>
             </v-col>
 
@@ -205,7 +248,7 @@ export default {
     const headers = [
       { text: 'Id', value: 'id' },
       { text: 'Title', value: 'title' },
-      { text: 'Authors' },
+      { text: 'Authors', value: 'authors' },
       { text: 'Udc', value: 'udc' },
       { text: 'Language', value: 'language' },
       { text: 'Pages', value: 'pages' },
@@ -213,8 +256,8 @@ export default {
       { text: 'Key words', value: 'key_words' },
       { text: 'Rating', value: 'rating' },
       { text: 'Image' },
-      { text: 'Special book' },
-      { text: 'Actions' },
+      { text: 'Special book', value: 'special_books' },
+      { text: 'Actions', value: 'actions' },
     ]
     const filters = [
       {
@@ -232,6 +275,12 @@ export default {
         value: 'type',
       },
     ]
+    const specialBooksOptions = [
+      { text: 'Yes', value: true },
+      { text: 'No', value: false },
+    ]
+    const specialBook = ref(null)
+    const eBook = ref(null)
     const search = ref('')
     const currentPage = ref(1)
     const itemsPerPage = ref(10)
@@ -261,6 +310,10 @@ export default {
         console.log(error.message)
       }
     }
+    function change(perPage) {
+      itemsPerPage.value = perPage
+      fetchBooksList()
+    }
     async function fetchUdcOptions() {
       try {
         const { data } = await axios.get('/library/udc/list')
@@ -285,6 +338,10 @@ export default {
         mdiBagPersonalOutline,
         mdiFlash,
       },
+      change,
+      eBook,
+      specialBook,
+      specialBooksOptions,
       filters,
       udcSearch,
       fetchUdcOptions,
