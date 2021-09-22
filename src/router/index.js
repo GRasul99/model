@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import dashboard from '@/router/dashboard'
+import apps from '@/router/apps'
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', redirect: { name: 'dashboard-statistics' } },
+  ...apps,
   ...dashboard,
   {
     path: '/error-404',
