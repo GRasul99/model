@@ -1,4 +1,5 @@
 import jwtDefaultConfig from './jwtDefaultConfig'
+import router from '@/router'
 
 export default class JwtService {
   // Will be used by this service for making API calls
@@ -43,7 +44,7 @@ export default class JwtService {
         const originalRequest = config
 
         // if (status === 401) {
-        if (response && response.status === 401) {
+        if (response && response.status === 401 && response.data.messages) {
           if (!this.isAlreadyFetchingAccessToken) {
             this.isAlreadyFetchingAccessToken = true
             this.refreshToken().then(r => {
@@ -67,6 +68,11 @@ export default class JwtService {
           })
 
           return retryOriginalRequest
+        }
+        if (response && response.status === 401 && !response.data.messages) {
+          localStorage.removeItem('access')
+          localStorage.removeItem('refresh')
+          router.push('/login')
         }
 
         return Promise.reject(error)
