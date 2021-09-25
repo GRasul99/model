@@ -1,8 +1,5 @@
 <template>
-  <v-tabs
-    vertical
-    class="elevation-1 rounded-lg"
-  >
+  <v-tabs vertical class="elevation-1 rounded-lg">
     <v-tab>
       Publication main parts
     </v-tab>
@@ -38,39 +35,20 @@
       <v-card flat>
         <v-card-text>
           <v-row>
-            <v-col
-              cols="12"
-              md="3"
-            >
-              <label for="firstname">First Name</label>
+            <v-col cols="12" md="3">
+              <label for="firstname">Document type</label>
             </v-col>
 
-            <v-col
-              cols="12"
-              md="9"
-            >
-              <v-autocomplete
-                id="firstname"
-                v-model="firstname"
-                outlined
-                dense
-                placeholder="First Name"
-                hide-details
-              />
+            <v-col cols="12" md="9">
+              <v-autocomplete id="firstname" v-model="firstname" outlined dense placeholder="First Name" hide-details />
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="12"
-              md="3"
-            >
+            <v-col cols="12" md="3">
               <label for="firstname">First Name</label>
             </v-col>
 
-            <v-col
-              cols="12"
-              md="9"
-            >
+            <v-col cols="12" md="9">
               <v-text-field
                 id="firstname"
                 v-model="firstname"
@@ -85,7 +63,7 @@
       </v-card>
     </v-tab-item>
     <v-tab-item>
-      <v-card flat>
+      <v-card flat>   q
         <v-card-text>
           <p>
             Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae

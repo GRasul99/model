@@ -4,15 +4,8 @@
       <v-col>
         <h2>{{ selected }}</h2>
       </v-col>
-      <v-col cols="3">
-        <v-select
-          v-model="selected"
-          :items="items"
-          dense
-          outlined
-          item-text="title"
-          item-value="title"
-        ></v-select>
+      <v-col cols="12" sm="3">
+        <v-select v-model="selected" :items="items" dense outlined item-text="title" item-value="title"></v-select>
       </v-col>
     </v-row>
     <v-row>
