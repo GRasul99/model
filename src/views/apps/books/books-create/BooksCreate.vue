@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid v-if="loaded">
+  <v-container fluid>
     <v-tabs vertical class="elevation-1 rounded-lg">
       <v-tab>
         Publication main parts
@@ -33,7 +33,7 @@
       </v-tab>
 
       <v-tab-item>
-        <publication-main-parts :document-type="book.document_type" :propsTitle="book.title" />
+        <publication-main-parts @title="title(title)" />
       </v-tab-item>
       <v-tab-item>
         <identifiers />
@@ -54,7 +54,7 @@
         <cross-references />
       </v-tab-item>
     </v-tabs>
-    {{ book.title }}
+    {{ book }}
   </v-container>
 </template>
 
@@ -67,10 +67,9 @@ import PhdThesis from '@/views/apps/books/components/books-tabs/PhdThesis.vue'
 import Labors from '@/views/apps/books/components/books-tabs/Labors.vue'
 import Miscellaneous from '@/views/apps/books/components/books-tabs/Miscellaneous.vue'
 import CrossReferences from '@/views/apps/books/components/books-tabs/CrossReferences.vue'
-import axios from '@/libs/axios'
 
 export default {
-  name: 'BooksEdit',
+  name: 'BooksCreate',
   components: {
     CrossReferences,
     Miscellaneous,
@@ -79,9 +78,6 @@ export default {
     BookFields,
     Identifiers,
     PublicationMainParts,
-  },
-  created() {
-    this.fetchBook()
   },
   setup() {
     return {
@@ -94,17 +90,12 @@ export default {
   },
   data() {
     return {
-      loaded: false,
       book: {},
     }
   },
   methods: {
-    fetchBook() {
-      this.laoded = false
-      axios.get(`/library/book/${this.$route.params.id}`).then(response => {
-        this.book = response.data
-        this.loaded = true
-      })
+    title(title) {
+      this.book.title = title
     },
   },
 }

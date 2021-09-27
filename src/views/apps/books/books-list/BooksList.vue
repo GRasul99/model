@@ -75,7 +75,8 @@
             hide-details
             dense
             outlined
-          ></v-text-field>
+          />
+          <v-btn color="primary" :to="{ name: 'apps-books-create' }">Book create</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -137,7 +138,7 @@
                 outlined
                 hide-details
                 @change="change"
-              ></v-select>
+              />
             </v-col>
 
             <v-col lg="10" cols="9" class="d-flex justify-end">
