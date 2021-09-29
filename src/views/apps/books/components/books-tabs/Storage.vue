@@ -64,6 +64,14 @@ export default {
       storages: this.propsStorages,
     }
   },
+  watch: {
+    storages: {
+      handler(value) {
+        this.$emit('storage', value)
+      },
+      deep: true,
+    },
+  },
   methods: {
     addStorages() {
       this.storages.push({ author: '', rank: 0 })

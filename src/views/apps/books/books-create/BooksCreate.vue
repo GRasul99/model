@@ -93,10 +93,10 @@
         />
       </v-tab-item>
       <v-tab-item>
-        <authors-rating />
+        <authors-rating @author-rank="authorRank" />
       </v-tab-item>
       <v-tab-item>
-        <storage />
+        <storage @storage="storage" />
       </v-tab-item>
     </v-tabs>
     <v-card-actions>
@@ -155,6 +155,12 @@ export default {
         pages: 0,
         languages: '',
         created: '',
+        doi: '',
+        issn: '',
+        pmid: '',
+        inventory_number: '',
+        isbn: '',
+        isbn2: '',
         booktitle: '',
         edition: '',
         chapter: '',
@@ -183,6 +189,8 @@ export default {
         kafedra: '',
         key_words: '',
         date_get: '',
+        author_ranks: [],
+        storage: [],
       },
     }
   },
@@ -306,6 +314,12 @@ export default {
     },
     dateGet(value) {
       this.book.date_get = value
+    },
+    authorRank(value) {
+      this.book.author_ranks = value
+    },
+    storage(value) {
+      this.book.storage = value
     },
     createBook() {
       axios.post('/library/book/create/', this.book)

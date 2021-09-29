@@ -79,8 +79,11 @@ export default {
     }
   },
   watch: {
-    authorRanks(value) {
-      this.$emit('authorRanks', value)
+    authorRanks: {
+      handler(value) {
+        this.$emit('author-rank', value)
+      },
+      deep: true,
     },
   },
   methods: {
