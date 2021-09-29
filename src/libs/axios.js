@@ -14,5 +14,5 @@ const axiosIns = axios.create({
 })
 
 Vue.prototype.$http = axiosIns
-
+axiosIns.defaults.headers.common['Content-Type'] = 'multipart/form-data'
 export default axiosIns

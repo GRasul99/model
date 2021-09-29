@@ -250,6 +250,9 @@ export default {
       this.$emit('discipline', value)
     },
     thumbnail(value) {
+      const formData = new FormData()
+      formData.append('img', value)
+      value = formData
       this.$emit('thumbnail', value)
     },
     file(value) {
