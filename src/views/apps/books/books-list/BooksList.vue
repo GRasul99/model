@@ -8,36 +8,43 @@
     <v-card class="my-4 px-3">
       <v-row>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete
-            v-model="udcFilter"
-            outlined
-            dense
-            label="Udc"
-            :items="udcOptions"
-            item-text="udc"
-            item-value="id"
-            :search-input.sync="udcSearch"
-          >
-            <template slot="item" slot-scope="{ item }"> {{ item.udc }} - {{ item.name }} </template>
-          </v-autocomplete>
+          <u-d-c-filter @udc-filter="filterByUDC" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="typeFilter" outlined dense label="Type" />
+          <type-filter @type-filter="filterByType" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="authorFilter" outlined dense label="Authors" />
+          <author-filter @author-filter="filterByAuthor" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="departmentFilter" outlined dense label="Department" />
+          <department-filter @department-filter="filterByDepartment" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="getDateFilter" outlined dense label="Date get" />
+          <v-text-field v-model="getDateFilter" outlined dense label="Date get" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="copyrightMarkFilter" outlined dense label="Copyright mark" />
+          <v-text-field v-model="publicationYearFilter" outlined dense label="Publication year" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-autocomplete v-model="publisherFilter" outlined dense label="Publisher" />
+          <copyright-mark-filter @copyright-mark-filter="filterByCopyrightMark" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <journal-filter @journal-filter="filterByJournal" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <discipline-filter @discipline-filter="filterByDiscipline" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <publisher-filter @publisher-filter="filterByPublisher" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <faculty-filter @faculty-filter="filterByFaculty" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <editor-filter @editor-filter="filterByEditor" />
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <language-filter @language-filter="filterByLanguage" />
         </v-col>
         <v-col cols="12" sm="6" md="3">
           <v-select
@@ -65,22 +72,26 @@
     </v-card>
     <v-card>
       <v-row>
-        <v-col cols="10" offset-md="8" md="4">
-          <v-text-field
-            v-model="search"
-            class="mr-6"
-            :append-icon="icons.mdiMagnify"
-            label="Search"
-            single-line
-            hide-details
-            dense
-            outlined
-          />
+        <v-col cols="12" offset-md="1" md="9">
+          <v-card-text>
+            <v-text-field
+              v-model="search"
+              class="mr-6"
+              :append-icon="icons.mdiMagnify"
+              label="Search"
+              single-line
+              hide-details
+              dense
+              outlined
+            />
+          </v-card-text>
         </v-col>
-        <v-col cols="2">
-          <v-btn color="primary" :to="{ name: 'apps-books-create' }">
-            Book create
-          </v-btn>
+        <v-col cols="12" md="2">
+          <v-card-text>
+            <v-btn color="primary" :to="{ name: 'apps-books-create' }">
+              Book create
+            </v-btn>
+          </v-card-text>
         </v-col>
       </v-row>
     </v-card>
@@ -173,10 +184,34 @@ import { ref } from '@vue/composition-api'
 import _ from 'lodash'
 import BooksStatistics from '@/views/apps/books/BooksStatistics.vue'
 import axios from '@/libs/axios'
+import UDCFilter from '@/views/apps/books/components/books-filters/UDCFilter.vue'
+import TypeFilter from '@/views/apps/books/components/books-filters/TypeFilter.vue'
+import AuthorFilter from '@/views/apps/books/components/books-filters/AuthorFilter.vue'
+import DepartmentFilter from '@/views/apps/books/components/books-filters/DepartmentFilter.vue'
+import CopyrightMarkFilter from '@/views/apps/books/components/books-filters/CopyrightMarkFilter.vue'
+import JournalFilter from '@/views/apps/books/components/books-filters/JournalFilter.vue'
+import DisciplineFilter from '@/views/apps/books/components/books-filters/DisciplineFilter.vue'
+import PublisherFilter from '@/views/apps/books/components/books-filters/PublisherFilter.vue'
+import FacultyFilter from '@/views/apps/books/components/books-filters/FacultyFilter.vue'
+import EditorFilter from '@/views/apps/books/components/books-filters/EditorFilter.vue'
+import LanguageFilter from '@/views/apps/books/components/books-filters/LanguageFilter.vue'
 
 export default {
   name: 'BooksList',
-  components: { BooksStatistics },
+  components: {
+    LanguageFilter,
+    EditorFilter,
+    FacultyFilter,
+    PublisherFilter,
+    DisciplineFilter,
+    JournalFilter,
+    CopyrightMarkFilter,
+    DepartmentFilter,
+    AuthorFilter,
+    TypeFilter,
+    UDCFilter,
+    BooksStatistics,
+  },
   setup() {
     const headers = [
       { text: 'Id', value: 'id' },
@@ -192,34 +227,10 @@ export default {
       { text: 'Special book', value: 'special_books' },
       { text: 'Actions', value: 'actions' },
     ]
-    const filters = [
-      {
-        id: 1,
-        name: 'udc',
-        items: 'udc',
-        text: 'udc',
-        value: 'udc',
-      },
-      {
-        id: 2,
-        name: 'type',
-        items: 'type',
-        text: 'type',
-        value: 'type',
-      },
-    ]
     const specialBooksOptions = [
       { text: 'Yes', value: true },
       { text: 'No', value: false },
     ]
-    const totalBooks = ref(null)
-    const typeFilter = ref('')
-    const authorFilter = ref('')
-    const departmentFilter = ref('')
-    const getDateFilter = ref('')
-    const copyrightMarkFilter = ref('')
-    const publisherFilter = ref('')
-    const udcOptions = ref([])
     const items = ref([])
 
     return {
@@ -232,17 +243,8 @@ export default {
         mdiFlash,
       },
       specialBooksOptions,
-      filters,
-      udcOptions,
       items,
-      typeFilter,
-      authorFilter,
-      departmentFilter,
-      getDateFilter,
-      copyrightMarkFilter,
-      publisherFilter,
       headers,
-      totalBooks,
     }
   },
   data() {
@@ -257,26 +259,78 @@ export default {
       totalBooks: 0,
       eBook: null,
       specialBook: null,
+      getDateFilter: null,
+      publicationYearFilter: null,
       udcFilter: null,
+      authorFilter: null,
+      departmentFilter: null,
+      journalFilter: null,
+      disciplineFilter: null,
+      publisherFilter: null,
+      facultyFilter: null,
+      editorFilter: null,
+      languageFilter: null,
     }
   },
   watch: {
     search: _.debounce(function querySearch() {
-      console.log(this.search)
       this.fetchBookList()
     }, 1000),
-    udcSearch: _.debounce(function udcSearch() {
-      this.fetchUdcOptions()
-    }, 500),
-    udcFilter() {
+    publicationYearFilter: _.debounce(function querySearch() {
       this.fetchBookList()
-    },
+    }, 1000),
+    getDateFilter: _.debounce(function querySearch() {
+      this.fetchBookList()
+    }, 1000),
   },
   created() {
     this.fetchBookList()
-    this.fetchUdcOptions()
   },
   methods: {
+    filterByUDC(value) {
+      this.udcFilter = value
+      this.fetchBookList()
+    },
+    filterByType(value) {
+      this.typeFilter = value
+      this.fetchBookList()
+    },
+    filterByAuthor(value) {
+      this.authorFilter = value
+      this.fetchBookList()
+    },
+    filterByDepartment(value) {
+      this.departmentFilter = value
+      this.fetchBookList()
+    },
+    filterByCopyrightMark(value) {
+      this.copyrightMarkFilter = value
+      this.fetchBookList()
+    },
+    filterByJournal(value) {
+      this.journalFilter = value
+      this.fetchBookList()
+    },
+    filterByDiscipline(value) {
+      this.disciplineFilter = value
+      this.fetchBookList()
+    },
+    filterByPublisher(value) {
+      this.publisherFilter = value
+      this.fetchBookList()
+    },
+    filterByFaculty(value) {
+      this.facultyFilter = value
+      this.fetchBookList()
+    },
+    filterByEditor(value) {
+      this.editorFilter = value
+      this.fetchBookList()
+    },
+    filterByLanguage(value) {
+      this.languageFilter = value
+      this.fetchBookList()
+    },
     async fetchBookList() {
       try {
         const { data } = await axios.get('/library/book/list/', {
@@ -287,6 +341,17 @@ export default {
             e_book: this.eBook,
             special_books: this.specialBook,
             udc: this.udcFilter,
+            type: this.typeFilter,
+            author: this.authorFilter,
+            department: this.departmentFilter,
+            copyright_mark: this.copyrightMarkFilter,
+            journal: this.journalFilter,
+            discipline: this.disciplineFilter,
+            publisher: this.publisherFilter,
+            editor: this.editorFilter,
+            language: this.languageFilter,
+            publication_year: this.publicationYearFilter,
+            date_get: this.getDateFilter,
           },
         })
         this.books = data.results
@@ -295,14 +360,6 @@ export default {
       } catch (error) {
         console.log(error.message)
       }
-    },
-    async fetchUdcOptions() {
-      const { data } = await axios.get('/library/udc/list/', {
-        params: {
-          search: this.udcSearch,
-        },
-      })
-      this.udcOptions = data.results
     },
     pageCount() {
       return Math.ceil(this.totalBooks / this.itemsPerPage)
