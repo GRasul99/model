@@ -33,28 +33,83 @@
       </v-tab>
 
       <v-tab-item>
-        <publication-main-parts :document-type="book.document_type" :propsTitle="book.title" />
+        <publication-main-parts
+          :document-type="book.document_type"
+          :propsTitle="book.title"
+          :props-journal="book.journal"
+          :props-volume="book.volume"
+          :props-language="book.language"
+          :props-created="book.created"
+        />
       </v-tab-item>
       <v-tab-item>
-        <identifiers />
+        <identifiers
+          :props-doi="book.doi"
+          :props-issn="book.issn"
+          :props-pmid="book.pmid"
+          :props-inventory-number="book.inventory_number"
+          :props-isbn="book.isbn"
+          :props-isbn2="book.isbn2"
+        />
       </v-tab-item>
       <v-tab-item>
-        <book-fields />
+        <book-fields
+          :props-book-title="book.booktitle"
+          :props-edition="book.edition"
+          :props-chapter="book.chapter"
+          :props-copyright-mark="book.copyright_mark"
+        />
       </v-tab-item>
       <v-tab-item>
-        <phd-thesis />
+        <phd-thesis :props-school="book.school" />
       </v-tab-item>
       <v-tab-item>
-        <labors />
+        <labors :props-organization="book.organization" />
       </v-tab-item>
       <v-tab-item>
-        <miscellaneous />
+        <miscellaneous
+          :props-editors="book.editors"
+          :props-publisher="book.publisher"
+          :props-address="book.address"
+          :props-annote="book.annote"
+          :props-note="book.note"
+        />
       </v-tab-item>
       <v-tab-item>
-        <cross-references />
+        <cross-references :props-cross-references="book.crossref" />
+      </v-tab-item>
+      <v-tab-item>
+        <additional-information
+          :props-printed-book="book.printed_book"
+          :props-e-book="book.e_book"
+          :props-special-books="book.special_books"
+          :props-faculty="book.faculty"
+          :props-kafedra="book.kafedra"
+          :props-discipline="book.discipline"
+          :props-thumbnail="book.img"
+          :props-file="book.file"
+          :props-key-words="book.key_words"
+          :props-quantity="book.quantity"
+          :props-real-time-count="book.real_time_count"
+          :props-price="book.price"
+          :props-used="book.used"
+          :props-rating="book.rating"
+          :props-date-get="book.date_get"
+        />
+      </v-tab-item>
+      <v-tab-item>
+        <authors-rating :props-author-ranks="book.author_ranks" />
+      </v-tab-item>
+      <v-tab-item>
+        <storage :props-storages="book.storage" />
       </v-tab-item>
     </v-tabs>
-    {{ book.title }}
+    <v-card-actions>
+      <v-spacer />
+      <v-btn color="primary" @click="updateBook">
+        Update book
+      </v-btn>
+    </v-card-actions>
   </v-container>
 </template>
 
@@ -68,10 +123,16 @@ import Labors from '@/views/apps/books/components/books-tabs/Labors.vue'
 import Miscellaneous from '@/views/apps/books/components/books-tabs/Miscellaneous.vue'
 import CrossReferences from '@/views/apps/books/components/books-tabs/CrossReferences.vue'
 import axios from '@/libs/axios'
+import AdditionalInformation from '@/views/apps/books/components/books-tabs/AdditionalInformation.vue'
+import AuthorsRating from '@/views/apps/books/components/books-tabs/AuthorsRating.vue'
+import Storage from '@/views/apps/books/components/books-tabs/Storage.vue'
 
 export default {
   name: 'BooksEdit',
   components: {
+    Storage,
+    AuthorsRating,
+    AdditionalInformation,
     CrossReferences,
     Miscellaneous,
     Labors,
@@ -105,6 +166,9 @@ export default {
         this.book = response.data
         this.loaded = true
       })
+    },
+    updateBook() {
+      axios.post(`/library/book/${this.$route.params.id}`, this.book)
     },
   },
 }

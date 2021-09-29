@@ -120,8 +120,8 @@ export default {
       default: '',
     },
     propsVolume: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     propsPages: {
       type: Number,

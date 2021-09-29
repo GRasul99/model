@@ -151,16 +151,16 @@ export default {
   name: 'AdditionalInformation',
   props: {
     propsPrintedBook: {
-      type: String,
-      default: '',
+      type: Boolean,
+      default: false,
     },
     propsEBook: {
-      type: String,
-      default: '',
+      type: Boolean,
+      default: false,
     },
     propsSpecialBooks: {
-      type: String,
-      default: '',
+      type: Boolean,
+      default: false,
     },
     propsFaculty: {
       type: String,

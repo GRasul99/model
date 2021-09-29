@@ -73,8 +73,10 @@ export default {
   name: 'Miscellaneous',
   props: {
     propsEditors: {
-      type: String,
-      default: '',
+      type: Array,
+      default() {
+        return []
+      },
     },
     propsPublisher: {
       type: String,

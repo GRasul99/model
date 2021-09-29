@@ -105,7 +105,6 @@
         Create book
       </v-btn>
     </v-card-actions>
-    {{ book }}
   </v-container>
 </template>
 
@@ -151,7 +150,7 @@ export default {
       book: {
         title: '',
         journal: '',
-        volume: 0,
+        volume: '',
         pages: 0,
         languages: '',
         created: '',

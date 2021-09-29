@@ -28,8 +28,10 @@ export default {
   name: 'CrossReferences',
   props: {
     propsCrossReferences: {
-      type: String,
-      default: '',
+      type: [],
+      default() {
+        return []
+      },
     },
   },
   data() {
