@@ -40,14 +40,7 @@
 
         <v-col cols="12" md="9">
           <div class="d-flex align-center">
-            <v-text-field
-              id="title"
-              v-model="journal"
-              outlined
-              dense
-              placeholder="First Name"
-              hide-details
-            ></v-text-field>
+            <v-text-field id="title" v-model="journal" outlined dense placeholder="Journal" hide-details />
             <v-icon small class="cursor-pointer mx-2" color="success" @click.prevent="add">
               {{ icons.mdiPlusOutline }}
             </v-icon>
@@ -122,6 +115,26 @@ export default {
       type: String,
       default: '',
     },
+    propsJournal: {
+      type: String,
+      default: '',
+    },
+    propsVolume: {
+      type: Number,
+      default: 0,
+    },
+    propsPages: {
+      type: Number,
+      default: 0,
+    },
+    propsLanguage: {
+      type: String,
+      default: '',
+    },
+    propsGetDate: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -131,11 +144,11 @@ export default {
       },
       document_type: this.documentType,
       title: this.propsTitle,
-      journal: '',
-      volume: '',
-      pages: '',
-      language: '',
-      getDate: '',
+      journal: this.propsJournal,
+      volume: this.propsVolume,
+      pages: this.propsPages,
+      language: this.propsLanguage,
+      getDate: this.propsGetDate,
     }
   },
   methods: {
@@ -149,6 +162,21 @@ export default {
   watch: {
     title(value) {
       this.$emit('title', value)
+    },
+    journal(value) {
+      this.$emit('journal', value)
+    },
+    volume(value) {
+      this.$emit('volume', value)
+    },
+    pages(value) {
+      this.$emit('pages', value)
+    },
+    language(value) {
+      this.$emit('language', value)
+    },
+    getDate(value) {
+      this.$emit('getDate', value)
     },
   },
 }

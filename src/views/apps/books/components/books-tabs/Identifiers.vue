@@ -81,15 +81,61 @@
 <script>
 export default {
   name: 'Identifiers',
+  props: {
+    propsDoi: {
+      type: String,
+      default: '',
+    },
+    propsIssn: {
+      type: String,
+      default: '',
+    },
+    propsPmid: {
+      type: String,
+      default: '',
+    },
+    propsInventoryNumber: {
+      type: String,
+      default: '',
+    },
+    propsIsbn: {
+      type: String,
+      default: '',
+    },
+    propsIsbn2: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
-      doi: null,
-      issn: null,
-      pmid: null,
-      inventoryNumber: null,
-      isbn: null,
-      isbn2: null,
+      doi: this.propsDoi,
+      issn: this.propsIssn,
+      pmid: this.propsPmid,
+      inventoryNumber: this.propsInventoryNumber,
+      isbn: this.propsIsbn,
+      isbn2: this.propsIsbn2,
     }
+  },
+  watch: {
+    doi(value) {
+      this.$emit('doi', value)
+    },
+    issn(value) {
+      this.$emit('issn', value)
+    },
+    pmid(value) {
+      this.$emit('pmid', value)
+    },
+    inventoryNumber(value) {
+      this.$emit('inventoryNumber', value)
+    },
+    isbn(value) {
+      this.$emit('isbn', value)
+    },
+    isbn2(value) {
+      this.$emit('isbn2', value)
+    },
   },
 }
 </script>

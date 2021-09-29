@@ -74,6 +74,24 @@ import { mdiPlusOutline, mdiDeleteOutline, mdiPencilOutline } from '@mdi/js'
 
 export default {
   name: 'BookFields',
+  props: {
+    propsBookTitle: {
+      type: String,
+      default: '',
+    },
+    propsEdition: {
+      type: String,
+      default: '',
+    },
+    propsChapter: {
+      type: String,
+      default: '',
+    },
+    propsCopyrightMark: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       icons: {
@@ -81,16 +99,33 @@ export default {
         mdiDeleteOutline,
         mdiPencilOutline,
       },
-      bookTitle: null,
-      edition: null,
-      chapter: null,
-      udc: null,
-      copyrightMark: null,
+      bookTitle: this.propsBookTitle,
+      edition: this.edition,
+      chapter: this.chapter,
+      udc: this.udc,
+      copyrightMark: this.copyrightMark,
     }
   },
   methods: {
     add() {},
     edit() {},
+  },
+  watch: {
+    bookTitle(value) {
+      this.$emit('bookTitle', value)
+    },
+    edition(value) {
+      this.$emit('edition', value)
+    },
+    chapter(value) {
+      this.$emit('chapter', value)
+    },
+    udc(value) {
+      this.$emit('udc', value)
+    },
+    copyrightMark(value) {
+      this.$emit('copyrightMark', value)
+    },
   },
 }
 </script>

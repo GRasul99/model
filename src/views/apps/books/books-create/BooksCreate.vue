@@ -33,10 +33,24 @@
       </v-tab>
 
       <v-tab-item>
-        <publication-main-parts @title="title(title)" />
+        <publication-main-parts
+          @title="title"
+          @journal="journal"
+          @volume="volume"
+          @pages="pages"
+          @languages="languages"
+          @getDate="getDate"
+        />
       </v-tab-item>
       <v-tab-item>
-        <identifiers />
+        <identifiers
+          @doi="doi"
+          @issn="issn"
+          @pmid="pmid"
+          @inventory-number="inventoryNumber"
+          @isbn="isbn"
+          @isbn2="isbn2"
+        />
       </v-tab-item>
       <v-tab-item>
         <book-fields />
@@ -90,12 +104,52 @@ export default {
   },
   data() {
     return {
-      book: {},
+      book: {
+        title: '',
+        journal: '',
+        volume: 0,
+        pages: 0,
+        languages: '',
+        getDate: '',
+      },
     }
   },
   methods: {
-    title(title) {
-      this.book.title = title
+    title(value) {
+      this.book.title = value
+    },
+    journal(value) {
+      this.book.journal = value
+    },
+    volume(value) {
+      this.book.volume = value
+    },
+    pages(value) {
+      this.book.pages = value
+    },
+    languages(value) {
+      this.book.languages = value
+    },
+    getDate(value) {
+      this.book.getDate = value
+    },
+    doi(value) {
+      this.book.doi = value
+    },
+    issn(value) {
+      this.book.issn = value
+    },
+    pmid(value) {
+      this.book.pmid = value
+    },
+    inventoryNumber(value) {
+      this.book.inventoryNumber = value
+    },
+    isbn(value) {
+      this.book.isbn = value
+    },
+    isbn2(value) {
+      this.book.isbn2 = value
     },
   },
 }
