@@ -39,7 +39,7 @@
           @volume="volume"
           @pages="pages"
           @languages="languages"
-          @getDate="getDate"
+          @created="created"
         />
       </v-tab-item>
       <v-tab-item>
@@ -53,21 +53,58 @@
         />
       </v-tab-item>
       <v-tab-item>
-        <book-fields />
+        <book-fields
+          @bookt-title="bookTitle"
+          @edition="edition"
+          @chapter="chapter"
+          @udc="udc"
+          @copyright-mark="copyrightMark"
+        />
       </v-tab-item>
       <v-tab-item>
-        <phd-thesis />
+        <phd-thesis @school="school" />
       </v-tab-item>
       <v-tab-item>
-        <labors />
+        <labors @organization="organization" />
       </v-tab-item>
       <v-tab-item>
-        <miscellaneous />
+        <miscellaneous @editors="editors" @publisher="publisher" @address="address" @annote="annote" @note="note" />
       </v-tab-item>
       <v-tab-item>
-        <cross-references />
+        <cross-references @cross-references="crossReferences" />
+      </v-tab-item>
+      <v-tab-item>
+        <additional-information
+          @printed-book="printedBook"
+          @e-book="eBook"
+          @special-books="specialBooks"
+          @faculty="faculty"
+          @kafedra="kafedra"
+          @discipline="discipline"
+          @thumbnail="thumbnail"
+          @file="file"
+          @key-words="keyWords"
+          @quantity="quantity"
+          @real-time-count="realTimeCount"
+          @price="price"
+          @used="used"
+          @rating="rating"
+          @date-get="dateGet"
+        />
+      </v-tab-item>
+      <v-tab-item>
+        <authors-rating />
+      </v-tab-item>
+      <v-tab-item>
+        <storage />
       </v-tab-item>
     </v-tabs>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn color="primary" @click="createBook">
+        Create book
+      </v-btn>
+    </v-card-actions>
     {{ book }}
   </v-container>
 </template>
@@ -81,10 +118,17 @@ import PhdThesis from '@/views/apps/books/components/books-tabs/PhdThesis.vue'
 import Labors from '@/views/apps/books/components/books-tabs/Labors.vue'
 import Miscellaneous from '@/views/apps/books/components/books-tabs/Miscellaneous.vue'
 import CrossReferences from '@/views/apps/books/components/books-tabs/CrossReferences.vue'
+import axios from '@/libs/axios'
+import AdditionalInformation from '@/views/apps/books/components/books-tabs/AdditionalInformation.vue'
+import AuthorsRating from '@/views/apps/books/components/books-tabs/AuthorsRating.vue'
+import Storage from '@/views/apps/books/components/books-tabs/Storage.vue'
 
 export default {
   name: 'BooksCreate',
   components: {
+    Storage,
+    AuthorsRating,
+    AdditionalInformation,
     CrossReferences,
     Miscellaneous,
     Labors,
@@ -110,7 +154,35 @@ export default {
         volume: 0,
         pages: 0,
         languages: '',
-        getDate: '',
+        created: '',
+        booktitle: '',
+        edition: '',
+        chapter: '',
+        udc: '',
+        copyright_mark: '',
+        school: '',
+        organization: '',
+        editors: [],
+        publisher: null,
+        address: '',
+        annote: '',
+        note: '',
+        crossref: [],
+        printed_book: false,
+        special_books: false,
+        e_book: false,
+        faculty: '',
+        quantity: 0,
+        real_time_count: 0,
+        price: 0,
+        rating: 0.0,
+        used: 0,
+        img: '',
+        file: '',
+        discipline: '',
+        kafedra: '',
+        key_words: '',
+        date_get: '',
       },
     }
   },
@@ -130,8 +202,8 @@ export default {
     languages(value) {
       this.book.languages = value
     },
-    getDate(value) {
-      this.book.getDate = value
+    created(value) {
+      this.book.created = value
     },
     doi(value) {
       this.book.doi = value
@@ -150,6 +222,93 @@ export default {
     },
     isbn2(value) {
       this.book.isbn2 = value
+    },
+    bookTitle(value) {
+      this.book.book_title = value
+    },
+    edition(value) {
+      this.book.edition = value
+    },
+    chapter(value) {
+      this.book.chapter = value
+    },
+    udc(value) {
+      this.book.udc = value
+    },
+    copyrightMark(value) {
+      this.book.copyright_mark = value
+    },
+    school(value) {
+      this.book.school = value
+    },
+    organization(value) {
+      this.book.organization = value
+    },
+    editors(value) {
+      this.book.editors.push(value)
+    },
+    publisher(value) {
+      this.book.publisher = value
+    },
+    address(value) {
+      this.book.address = value
+    },
+    annote(value) {
+      this.book.annote = value
+    },
+    note(value) {
+      this.book.note = value
+    },
+    crossReferences(value) {
+      this.book.crossref = value
+    },
+    printedBook(value) {
+      this.book.printed_book = value
+    },
+    eBook(value) {
+      this.book.e_book = value
+    },
+    specialBooks(value) {
+      this.book.special_books = value
+    },
+    faculty(value) {
+      this.book.faculty = value
+    },
+    kafedra(value) {
+      this.book.kafedra = value
+    },
+    discipline(value) {
+      this.book.discipline = value
+    },
+    thumbnail(value) {
+      this.book.img = value
+    },
+    file(value) {
+      this.book.file = value
+    },
+    keyWords(value) {
+      this.book.key_words = value
+    },
+    quantity(value) {
+      this.book.quantity = value
+    },
+    realTimeCount(value) {
+      this.book.real_time_count = value
+    },
+    price(value) {
+      this.book.price = value
+    },
+    used(value) {
+      this.book.used = value
+    },
+    rating(value) {
+      this.book.rating = value
+    },
+    dateGet(value) {
+      this.book.date_get = value
+    },
+    createBook() {
+      axios.post('/library/book/create/', this.book)
     },
   },
 }

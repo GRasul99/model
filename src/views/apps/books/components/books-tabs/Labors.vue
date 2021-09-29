@@ -19,10 +19,21 @@
 <script>
 export default {
   name: 'Labors',
+  props: {
+    propsOrganization: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
-      organization: null,
+      organization: this.propsOrganization,
     }
+  },
+  watch: {
+    organization(value) {
+      this.$emit('organization', value)
+    },
   },
 }
 </script>

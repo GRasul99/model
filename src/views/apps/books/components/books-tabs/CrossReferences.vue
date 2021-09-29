@@ -26,10 +26,21 @@
 <script>
 export default {
   name: 'CrossReferences',
+  props: {
+    propsCrossReferences: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
-      crossReferences: null,
+      crossReferences: this.propsCrossReferences,
     }
+  },
+  watch: {
+    crossReferences(value) {
+      this.$emit('crossReferences', value)
+    },
   },
 }
 </script>

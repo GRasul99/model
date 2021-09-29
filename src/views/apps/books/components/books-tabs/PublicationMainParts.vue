@@ -93,7 +93,7 @@
 
         <v-col cols="12" md="9">
           <div class="d-flex align-center">
-            <v-text-field id="title" v-model="getDate" outlined dense placeholder="Language" hide-details />
+            <v-text-field id="title" v-model="created" outlined dense placeholder="Language" hide-details />
           </div>
         </v-col>
       </v-row>
@@ -131,7 +131,7 @@ export default {
       type: String,
       default: '',
     },
-    propsGetDate: {
+    propsCreated: {
       type: String,
       default: '',
     },
@@ -148,7 +148,7 @@ export default {
       volume: this.propsVolume,
       pages: this.propsPages,
       language: this.propsLanguage,
-      getDate: this.propsGetDate,
+      created: this.propsCreated,
     }
   },
   methods: {
@@ -175,8 +175,8 @@ export default {
     language(value) {
       this.$emit('language', value)
     },
-    getDate(value) {
-      this.$emit('getDate', value)
+    created(value) {
+      this.$emit('created', value)
     },
   },
 }

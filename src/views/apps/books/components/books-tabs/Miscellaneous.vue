@@ -71,17 +71,56 @@ import { mdiPlusOutline } from '@mdi/js'
 
 export default {
   name: 'Miscellaneous',
+  props: {
+    propsEditors: {
+      type: String,
+      default: '',
+    },
+    propsPublisher: {
+      type: String,
+      default: '',
+    },
+    propsAddress: {
+      type: String,
+      default: '',
+    },
+    propsAnnote: {
+      type: String,
+      default: '',
+    },
+    propsNote: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       icons: {
         mdiPlusOutline,
       },
-      editors: null,
-      publisher: null,
-      address: null,
-      annote: null,
-      note: null,
+      editors: this.propsEditors,
+      publisher: this.propsPublisher,
+      address: this.propsAddress,
+      annote: this.propsAnnote,
+      note: this.propsNote,
     }
+  },
+  watch: {
+    editors(value) {
+      this.$emit('editors', value)
+    },
+    publisher(value) {
+      this.$emit('publisher', value)
+    },
+    address(value) {
+      this.$emit('address', value)
+    },
+    annote(value) {
+      this.$emit('annote', value)
+    },
+    note(value) {
+      this.$emit('note', value)
+    },
   },
   methods: {
     add() {},

@@ -106,10 +106,6 @@ export default {
       copyrightMark: this.copyrightMark,
     }
   },
-  methods: {
-    add() {},
-    edit() {},
-  },
   watch: {
     bookTitle(value) {
       this.$emit('bookTitle', value)
@@ -126,6 +122,10 @@ export default {
     copyrightMark(value) {
       this.$emit('copyrightMark', value)
     },
+  },
+  methods: {
+    add() {},
+    edit() {},
   },
 }
 </script>

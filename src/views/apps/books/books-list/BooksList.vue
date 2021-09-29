@@ -76,7 +76,11 @@
             dense
             outlined
           />
-          <v-btn color="primary" :to="{ name: 'apps-books-create' }">Book create</v-btn>
+        </v-col>
+        <v-col cols="2">
+          <v-btn color="primary" :to="{ name: 'apps-books-create' }">
+            Book create
+          </v-btn>
         </v-col>
       </v-row>
     </v-card>

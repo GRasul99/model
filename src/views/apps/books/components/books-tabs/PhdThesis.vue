@@ -8,7 +8,7 @@
 
         <v-col cols="12" md="9">
           <div class="d-flex align-center">
-            <v-text-field id="title" v-model="copyrightMark" outlined dense placeholder="Copyright mark" hide-details />
+            <v-text-field id="title" v-model="school" outlined dense placeholder="Copyright mark" hide-details />
           </div>
         </v-col>
       </v-row>
@@ -19,15 +19,21 @@
 <script>
 export default {
   name: 'PhdThesis',
+  props: {
+    propsSchool: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
-      copyrightMark: null,
+      school: this.propsSchool,
     }
   },
-  methods: {
-    add() {},
-    edit() {},
-    remove() {},
+  watch: {
+    school(value) {
+      this.$emit('school', value)
+    },
   },
 }
 </script>
