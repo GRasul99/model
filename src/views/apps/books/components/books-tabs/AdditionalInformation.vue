@@ -252,6 +252,7 @@ export default {
     thumbnail(value) {
       const formData = new FormData()
       formData.append('img', value)
+      // eslint-disable-next-line no-param-reassign
       value = formData
       this.$emit('thumbnail', value)
     },
